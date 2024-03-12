@@ -6,17 +6,29 @@ ________________________________________________________________________________
 
 # METODOS⚙️:
 iniciarPartida:
+
 iniciarJuego:
+
 asignarRoles:
+
 mostrarRoles:
+
 realizarAccionLobo:
+
 realizarAccionBruja:
+
 realizarAccionVidente:
-Iniciar dia:
-Iniciar nit:
-Hay ganador:
+
+Iniciardia:
+
+Iniciarnit:
+
+Hayganador:
+
 preguntarRepetirPartida:
+
 obtenerRolJugador:
+
 esNumero:
 ____________________________________________________________________________________________________________________________________________________
 
