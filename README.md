@@ -6,11 +6,11 @@ ________________________________________________________________________________
 
 # METODOS⚙️:
 - iniciarPartida:
-Descripción: Estemétodo inicia una partida completa del juego. Controla todo el flujo del juego, incluida la creación de jugadores, asignación de roles, inicio de rondas y determinación del ganador.
+Descripción: Este método inicia una partida completa del juego. Controla todo el flujo del juego, incluida la creación de jugadores, asignación de roles, inicio de rondas y determinación del ganador.
 - iniciarJuego:
-Descripción:Estemétodoiniciaunarondadeljuego.Solicitalacantidaddejugadores,recopilasusnombres,muestralosrolesasignadosyluegoejecutalasrondasdedíaynochehastaquesedeterminaunganador.
+Descripción: Este método inicia una ronda del juego. Solicita la cantidad de jugadores, recopila sus nombres, muestra los roles asignados y luego ejecuta las rondas de día y noche hasta que se determina un ganador.
 - asignarRoles:
-Descripción:Estemétodoasignarolesaleatoriosalosjugadores.Seleccionaaleatoriamenteunrolparacadajugadordelalistaderolespredefinidaymuestralosrolesasignadosacadajugador.
+Descripción: Este método asignarolesaleatoriosalosjugadores.Seleccionaaleatoriamenteunrolparacadajugadordelalistaderolespredefinidaymuestralosrolesasignadosacadajugador.
 - mostrarRoles:
 Descripción:Estemétodomuestralosrolesasignadosalosjugadores.Iterasobrelalistadejugadoresymuestraelnombredecadajugadorjuntoconsurolasignado.
 - realizarAccionLobo:
