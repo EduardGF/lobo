@@ -6,7 +6,7 @@ ________________________________________________________________________________
 
 # METODOS⚙️:
 - iniciarPartida:
-Descripción:Estemétodoiniciaunapartidacompletadeljuego.Controlatodoelflujodeljuego,incluidalacreacióndejugadores,asignaciónderoles,inicioderondasydeterminacióndelganador.
+Descripción: Estemétodo inicia una partida completa del juego. Controla todo el flujo del juego, incluida la creación de jugadores, asignación de roles, inicio de rondas y determinación del ganador.
 - iniciarJuego:
 Descripción:Estemétodoiniciaunarondadeljuego.Solicitalacantidaddejugadores,recopilasusnombres,muestralosrolesasignadosyluegoejecutalasrondasdedíaynochehastaquesedeterminaunganador.
 - asignarRoles:
