@@ -5,6 +5,19 @@ El primer concepto es el de los bandos. Los jugadores serán distribuidos en dos
 ____________________________________________________________________________________________________________________________________________________
 
 # METODOS⚙️:
+iniciarPartida:
+iniciarJuego:
+asignarRoles:
+mostrarRoles:
+realizarAccionLobo:
+realizarAccionBruja:
+realizarAccionVidente:
+Iniciar dia:
+Iniciar nit:
+Hay ganador:
+preguntarRepetirPartida:
+obtenerRolJugador:
+esNumero:
 ____________________________________________________________________________________________________________________________________________________
 
 # CONTROL DE ERRORES🛡️:
