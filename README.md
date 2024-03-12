@@ -6,29 +6,29 @@ ________________________________________________________________________________
 
 # METODOS⚙️:
 iniciarPartida:
-Descripción: Este método inicia una partida completa del juego. Controla todo el flujo del juego, incluida la creación de jugadores, asignación de roles, inicio de rondas y determinación del ganador.
+Descripción:Estemétodoiniciaunapartidacompletadeljuego.Controlatodoelflujodeljuego,incluidalacreacióndejugadores,asignaciónderoles,inicioderondasydeterminacióndelganador.
 iniciarJuego:
-Descripción: Este método inicia una ronda del juego. Solicita la cantidad de jugadores, recopila sus nombres, muestra los roles asignados y luego ejecuta las rondas de día y noche hasta que se determina un ganador.
+Descripción:Estemétodoiniciaunarondadeljuego.Solicitalacantidaddejugadores,recopilasusnombres,muestralosrolesasignadosyluegoejecutalasrondasdedíaynochehastaquesedeterminaunganador.
 asignarRoles:
-Descripción: Este método asigna roles aleatorios a los jugadores. Selecciona aleatoriamente un rol para cada jugador de la lista de roles predefinida y muestra los roles asignados a cada jugador.
+Descripción:Estemétodoasignarolesaleatoriosalosjugadores.Seleccionaaleatoriamenteunrolparacadajugadordelalistaderolespredefinidaymuestralosrolesasignadosacadajugador.
 mostrarRoles:
-Descripción: Este método muestra los roles asignados a los jugadores. Itera sobre la lista de jugadores y muestra el nombre de cada jugador junto con su rol asignado.
+Descripción:Estemétodomuestralosrolesasignadosalosjugadores.Iterasobrelalistadejugadoresymuestraelnombredecadajugadorjuntoconsurolasignado.
 realizarAccionLobo:
-Descripción: Este método simula la acción de los lobos durante la noche. Especifica qué acciones deben realizar los jugadores que tienen el rol de lobo durante la fase nocturna del juego.
+Descripción:Estemétodosimulalaaccióndeloslobosdurantelanoche.Especificaquéaccionesdebenrealizarlosjugadoresquetienenelroldelobodurantelafasenocturnadeljuego.
 realizarAccionBruja:
-Descripción: Este método simula la acción de la bruja durante la noche. Define las acciones que deben realizar los jugadores que tienen el rol de bruja durante la fase nocturna del juego.
+Descripción:Estemétodosimulalaaccióndelabrujadurantelanoche.Definelasaccionesquedebenrealizarlosjugadoresquetienenelroldebrujadurantelafasenocturnadeljuego.
 realizarAccionVidente:
-Descripción: Este método simula la acción de la vidente durante la noche. Establece las acciones que deben realizar los jugadores que tienen el rol de vidente durante la fase nocturna del juego.
+Descripción:Estemétodosimulalaaccióndelavidentedurantelanoche.Establecelasaccionesquedebenrealizarlosjugadoresquetienenelroldevidentedurantelafasenocturnadeljuego.
 Iniciardia:
-Descripción: Este método inicia la fase diurna del juego. Controla las acciones y eventos que ocurren durante el día, como la discusión entre los jugadores y la votación para eliminar a un jugador.
+Descripción:Estemétodoinicialafasediurnadeljuego.Controlalasaccionesyeventosqueocurrenduranteeldía,comoladiscusiónentrelosjugadoresylavotaciónparaeliminaraunjugador.
 Iniciarnit:
-Descripción: Este método inicia la fase nocturna del juego. Gestiona las acciones y eventos que tienen lugar durante la noche, como las acciones especiales de los roles nocturnos como los lobos, la bruja y la vidente.
+Descripción:Estemétodoinicialafasenocturnadeljuego.Gestionalasaccionesyeventosquetienenlugardurantelanoche,comolasaccionesespecialesdelosrolesnocturnoscomoloslobos,labrujaylavidente.
 Hayganador:
-Descripción: Este método verifica si hay un ganador en el juego. Determina si el juego ha terminado y si hay un jugador o un equipo que ha ganado la partida.
+Descripción:Estemétodoverificasihayunganadoreneljuego.Determinasieljuegohaterminadoysihayunjugadorounequipoquehaganadolapartida.
 preguntarRepetirPartida:
-Descripción: Este método pregunta al jugador si desea jugar otra partida. Espera la entrada del usuario para decidir si continuar jugando o no.
+Descripción:Estemétodopreguntaaljugadorsideseajugarotrapartida.Esperalaentradadelusuarioparadecidirsicontinuarjugandoono.
 obtenerRolJugador:
-Descripción: Este método obtiene el rol de un jugador. Devuelve el rol asociado al nombre del jugador que se pasa como parámetro.
+Descripción:Estemétodoobtieneelroldeunjugador.Devuelveelrolasociadoalnombredeljugadorquesepasacomoparámetro.
 ____________________________________________________________________________________________________________________________________________________
 
 # CONTROL DE ERRORES🛡️:
