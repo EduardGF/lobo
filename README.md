@@ -5,34 +5,34 @@ El primer concepto es el de los bandos. Los jugadores serán distribuidos en dos
 ____________________________________________________________________________________________________________________________________________________
 
 # METODOS⚙️:
-iniciarPartida:
+- iniciarPartida:
 Descripción:Estemétodoiniciaunapartidacompletadeljuego.Controlatodoelflujodeljuego,incluidalacreacióndejugadores,asignaciónderoles,inicioderondasydeterminacióndelganador.
-iniciarJuego:
+- iniciarJuego:
 Descripción:Estemétodoiniciaunarondadeljuego.Solicitalacantidaddejugadores,recopilasusnombres,muestralosrolesasignadosyluegoejecutalasrondasdedíaynochehastaquesedeterminaunganador.
-asignarRoles:
+- asignarRoles:
 Descripción:Estemétodoasignarolesaleatoriosalosjugadores.Seleccionaaleatoriamenteunrolparacadajugadordelalistaderolespredefinidaymuestralosrolesasignadosacadajugador.
-mostrarRoles:
+- mostrarRoles:
 Descripción:Estemétodomuestralosrolesasignadosalosjugadores.Iterasobrelalistadejugadoresymuestraelnombredecadajugadorjuntoconsurolasignado.
-realizarAccionLobo:
+- realizarAccionLobo:
 Descripción:Estemétodosimulalaaccióndeloslobosdurantelanoche.Especificaquéaccionesdebenrealizarlosjugadoresquetienenelroldelobodurantelafasenocturnadeljuego.
-realizarAccionBruja:
+- realizarAccionBruja:
 Descripción:Estemétodosimulalaaccióndelabrujadurantelanoche.Definelasaccionesquedebenrealizarlosjugadoresquetienenelroldebrujadurantelafasenocturnadeljuego.
-realizarAccionVidente:
+- realizarAccionVidente:
 Descripción:Estemétodosimulalaaccióndelavidentedurantelanoche.Establecelasaccionesquedebenrealizarlosjugadoresquetienenelroldevidentedurantelafasenocturnadeljuego.
-Iniciardia:
+- Iniciardia:
 Descripción:Estemétodoinicialafasediurnadeljuego.Controlalasaccionesyeventosqueocurrenduranteeldía,comoladiscusiónentrelosjugadoresylavotaciónparaeliminaraunjugador.
-Iniciarnit:
+- Iniciarnit:
 Descripción:Estemétodoinicialafasenocturnadeljuego.Gestionalasaccionesyeventosquetienenlugardurantelanoche,comolasaccionesespecialesdelosrolesnocturnoscomoloslobos,labrujaylavidente.
-Hayganador:
+- Hayganador:
 Descripción:Estemétodoverificasihayunganadoreneljuego.Determinasieljuegohaterminadoysihayunjugadorounequipoquehaganadolapartida.
-preguntarRepetirPartida:
+- preguntarRepetirPartida:
 Descripción:Estemétodopreguntaaljugadorsideseajugarotrapartida.Esperalaentradadelusuarioparadecidirsicontinuarjugandoono.
-obtenerRolJugador:
+- obtenerRolJugador:
 Descripción:Estemétodoobtieneelroldeunjugador.Devuelveelrolasociadoalnombredeljugadorquesepasacomoparámetro.
 ____________________________________________________________________________________________________________________________________________________
 
 # CONTROL DE ERRORES🛡️:
-esNumero:
+- esNumero:
 Descripción: Este método verifica si una cadena contiene un número. Es utilizado para validar los nombres de los jugadores y asegurarse de que no contengan números, ya que los nombres de los jugadores deben ser alfanuméricos.
 ____________________________________________________________________________________________________________________________________________________
 # PROGRAMADOR🧑‍💻:
