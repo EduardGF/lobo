@@ -1,7 +1,7 @@
 # LOS HOMBRES LOBO DE CASTRONEGRO🐺
 ____________________________________________________________________________________________________________________________________________________
 # QUAL ES EL CONCEPTO DE ESTE PROGRAMA 💻 :
-El primer concepto es el de los bandos. Los jugadores serán distribuidos en dos equipos. El más numeroso será el de los aldeanos (y demás personajes). Los integrantes de este grupo no conocerán la identidad de ningún otro jugador. El otro equipo estará formado por los Hombres Lobo. El objetivo de ambos grupos es acabar con el otro.
+El código implementa una serie de métodos que controlan el flujo del juego, desde la creación de jugadores hasta la determinación del ganador. Además, se incorporan mecanismos de control de errores para garantizar una interacción adecuada con el usuario, como la validación de nombres de jugadores para asegurarse de que no contengan números.
 ____________________________________________________________________________________________________________________________________________________
 
 # METODOS⚙️:
