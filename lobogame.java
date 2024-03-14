@@ -1,258 +1,268 @@
 package lobo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 
-public class HombresLobo {
+/**
+ * Implementación del juego de roles.
+ */
+public class JuegoDeRoles {
 
-    private static String[] roles = {"Lobo", "Aldeano", "Cazador", "Bruja", "Vidente"};
-    private static ArrayList<String> jugadores = new ArrayList<>();
-    private HashMap<String, String> rolesJugadores = new HashMap<>();
+    private static final int NUMERO_JUGADORES = 5;
+    private static final String[] ROLES = {"Bruja", "Lobo", "Visionero", "Cazador", "Aldeano"};
+    private static final Random RANDOM = new Random();
+    private static final Scanner SCANNER = new Scanner(System.in);
 
+    /**
+     * Método principal que inicia el juego.
+     */
     public static void main(String[] args) {
-        HombresLobo juego = new HombresLobo();
-        juego.iniciarPartida();
-    }
+        System.out.println("¡Bienvenido al juego de roles!");
 
-    public void iniciarPartida() {
-        Scanner scanner = new Scanner(System.in);
-        boolean jugarOtraPartida = true;
-
-        while (jugarOtraPartida) {
-            iniciarJuego(scanner);
-            jugarOtraPartida = preguntarRepetirPartida(scanner);
+        // Verificar si hay 5 jugadores
+        if (!verificarNumeroJugadores()) {
+            System.out.println("Debe haber exactamente 5 jugadores.");
+            return;
         }
 
-        scanner.close();
+        // Pedir nombres de jugadores
+        ArrayList<String> jugadores = pedirNombresJugadores();
+
+        // Asignar roles aleatorios
+        ArrayList<String> roles = asignarRoles();
+
+        // Mostrar jugadores con roles asignados
+        mostrarJugadoresConRoles(jugadores, roles);
+
+        // Iniciar el juego
+        jugar(jugadores, roles);
     }
 
-    public void iniciarJuego(Scanner scanner) {
-        System.out.println("Bienvenido a Hombres Lobo de Castronegro!");
+    /**
+     * Verifica si el número de jugadores es 5.
+     *
+     * @return true si hay 5 jugadores, false de lo contrario.
+     */
+    private static boolean verificarNumeroJugadores() {
+        return true; // Siempre será true para este juego
+    }
 
-        // Verificar el número de jugadores
-        int cantidadJugadores = obtenerCantidadJugadores(scanner);
-        while (cantidadJugadores != roles.length) {
-            System.out.println("El número de jugadores debe ser igual al número de roles disponibles (" + roles.length + ").");
-            cantidadJugadores = obtenerCantidadJugadores(scanner);
-        }
-
-        jugadores.clear();
-        for (int i = 0; i < cantidadJugadores; i++) {
-            System.out.print("Ingrese el nombre del jugador " + (i + 1) + ": ");
-            String nombre = scanner.next();
-            while (esNumero(nombre)) {
-                System.out.println("Error: El nombre no puede contener números.");
-                System.out.print("Ingrese el nombre del jugador " + (i + 1) + ": ");
-                nombre = scanner.next();
-            }
+    /**
+     * Pide los nombres de los jugadores al usuario.
+     *
+     * @return ArrayList de nombres de jugadores.
+     */
+    private static ArrayList<String> pedirNombresJugadores() {
+        ArrayList<String> jugadores = new ArrayList<>();
+        for (int i = 0; i < NUMERO_JUGADORES; i++) {
+            String nombre = pedirString("Ingrese el nombre del jugador " + (i + 1) + ": ");
             jugadores.add(nombre);
         }
-
-        asignarRoles();
-
-        // Iniciar la ronda 1 o noche 1
-        iniciarRonda(scanner);
-
-        // Iniciar la fase de discusión para eliminar un jugador
-        iniciarDia(scanner);
+        return jugadores;
     }
 
-    public int obtenerCantidadJugadores(Scanner scanner) {
-        int cantidadJugadores = 0;
-
-        do {
-            System.out.print("Ingrese la cantidad de jugadores (mínimo 5): ");
-            while (!scanner.hasNextInt()) {
-                System.out.println("Error: Debes ingresar un número.");
-                System.out.print("Ingrese la cantidad de jugadores (mínimo 5): ");
-                scanner.next();
-            }
-            cantidadJugadores = scanner.nextInt();
-
-            if (cantidadJugadores < 4) {
-                System.out.println("Error: Se necesitan al menos 4 jugadores para iniciar el juego.");
-            }
-        } while (cantidadJugadores < 4);
-
-        return cantidadJugadores;
+    /**
+     * Asigna roles aleatorios a los jugadores.
+     *
+     * @return ArrayList de roles asignados.
+     */
+    private static ArrayList<String> asignarRoles() {
+        ArrayList<String> roles = new ArrayList<>();
+        for (int i = 0; i < NUMERO_JUGADORES; i++) {
+            roles.add(ROLES[i]);
+        }
+        Collections.shuffle(roles);
+        return roles;
     }
 
-    public void asignarRoles() {
+    /**
+     * Muestra los jugadores con sus roles asignados.
+     *
+     * @param jugadores ArrayList de nombres de jugadores.
+     * @param roles     ArrayList de roles asignados.
+     */
+    private static void mostrarJugadoresConRoles(ArrayList<String> jugadores, ArrayList<String> roles) {
         System.out.println("Roles asignados:");
-        ArrayList<String> rolesDisponibles = new ArrayList<>(Arrays.asList(roles)); // Lista de roles disponibles
-        Collections.shuffle(rolesDisponibles); // Barajar roles disponibles
-        for (String jugador : jugadores) {
-            if (!rolesDisponibles.isEmpty()) {
-                String rolAsignado = rolesDisponibles.remove(0); // Tomar el primer rol de la lista
-                System.out.println(jugador + ": " + rolAsignado);
-                rolesJugadores.put(jugador, rolAsignado); // Guardar el rol asignado para el jugador
-            } else {
-                // Si se acaban los roles disponibles, asignar aldeano
-                System.out.println(jugador + ": Aldeano");
-                rolesJugadores.put(jugador, "Aldeano"); // Guardar el rol asignado como Aldeano
-            }
+        for (int i = 0; i < NUMERO_JUGADORES; i++) {
+            System.out.println("Jugador " + (i + 1) + ": " + jugadores.get(i) + " - " + roles.get(i));
         }
     }
 
-    public void iniciarRonda(Scanner scanner) {
-        System.out.println("¡Comienza la ronda 1 o noche 1!");
+    /**
+     * Inicia el juego y controla el flujo del mismo.
+     *
+     * @param jugadores ArrayList de nombres de jugadores.
+     * @param roles     ArrayList de roles asignados.
+     */
+    private static void jugar(ArrayList<String> jugadores, ArrayList<String> roles) {
+        System.out.println("¡Comienza el juego!");
 
-        // Acciones de los jugadores nocturnos (lobo, bruja, vidente)
-        for (String jugador : jugadores) {
-            String rol = obtenerRolJugador(jugador);
-            switch (rol) {
-                case "Lobo":
-                    realizarAccionLobo(jugador, scanner);
-                    break;
-                case "Bruja":
-                    realizarAccionBruja(scanner);
-                    break;
-                case "Vidente":
-                    realizarAccionVidente(jugador, scanner);
-                    break;
-                default:
-                    // Otros roles no tienen acciones especiales durante la noche
-                    break;
-            }
+        boolean finJuego = false;
+
+        while (!finJuego) {
+            System.out.println("\nRonda (Noche):");
+            noche(jugadores, roles);
+
+            System.out.println("\nRonda (Día):");
+            dia(jugadores, roles);
+
+            finJuego = verificarFinJuego(roles, jugadores);
         }
 
-        // Verificar si el lobo ha matado al cazador y a la bruja
-        boolean cazadorVivo = jugadores.contains("Cazador");
-        boolean brujaViva = jugadores.contains("Bruja");
-        if (!cazadorVivo && !brujaViva) {
-            System.out.println("El lobo ha matado al cazador y a la bruja. ¡Los lobos ganan!");
-        }
+        System.out.println("\n¡Fin del juego!");
     }
 
-    private void realizarAccionVidente(String jugador, Scanner scanner) {
-        System.out.println(jugador + " (Vidente) está seleccionando a quién investigar...");
+    /**
+     * Realiza las acciones de la ronda nocturna.
+     *
+     * @param jugadores ArrayList de nombres de jugadores.
+     * @param roles     ArrayList de roles asignados.
+     */
+    private static void noche(ArrayList<String> jugadores, ArrayList<String> roles) {
+        String accionBruja = "abstenerse";
+        String accionLobo = "abstenerse";
 
-        String jugadorConMasLetrasParecidas = "";
-        int maxLetrasParecidas = 0;
+        // La Bruja decide
+        if (roles.contains("Bruja")) {
+            System.out.println("La Bruja decide (Curar, Matar o Abstenerse):");
+            accionBruja = pedirString("Ingrese la acción de la Bruja (curar/matar/abstenerse): ");
+        }
 
-        for (String j : jugadores) {
-            if (!j.equals(jugador)) {
-                int letrasParecidas = contarLetrasParecidas(jugador, j);
-                if (letrasParecidas > maxLetrasParecidas) {
-                    maxLetrasParecidas = letrasParecidas;
-                    jugadorConMasLetrasParecidas = j;
+        // El Lobo decide
+        if (roles.contains("Lobo")) {
+            System.out.println("El Lobo decide a quién matar:");
+            accionLobo = elegirVictima(jugadores, roles, "a quien matar");
+        }
+
+        // Realizar acciones según las decisiones de los jugadores
+        for (int i = 0; i < NUMERO_JUGADORES; i++) {
+            if (roles.get(i).equals("Bruja") && accionBruja.equalsIgnoreCase("matar")) {
+                if (jugadores.get(i).equals(accionLobo)) {
+                    System.out.println("¡La Bruja no puede matar al Lobo!");
+                } else {
+                    System.out.println("La Bruja ha matado a " + accionBruja);
+                    roles.set(i, "Muerto");
                 }
-            }
-        }
-
-        System.out.println(jugador + " (Vidente) ha investigado a " + jugadorConMasLetrasParecidas +
-                " y ha visto que su rol es: " + obtenerRolJugador(jugadorConMasLetrasParecidas));
-    }
-
-    private int contarLetrasParecidas(String jugador, String j) {
-        int contador = 0;
-        for (int i = 0; i < jugador.length(); i++) {
-            if (j.contains(Character.toString(jugador.charAt(i)))) {
-                contador++;
-            }
-        }
-        return contador;
-    }
-
-    private void realizarAccionBruja(Scanner scanner) {
-        System.out.println("La Bruja está decidiendo si utilizar sus pociones...");
-        int decision = (int) (Math.random() * 2); // 0 para no utilizar la poción, 1 para utilizarla
-        if (decision == 0) {
-            System.out.println("La Bruja decide no utilizar sus pociones esta noche.");
-        } else {
-            int accion = (int) (Math.random() * 2); // 0 para curar, 1 para matar
-            String accionStr = (accion == 0) ? "curar" : "matar";
-            System.out.println("La Bruja decide utilizar su poción para " + accionStr + ".");
-            if (accion == 0) {
-                System.out.println("La Bruja ha curado al lobo. ¡Habrá otra noche!");
-            } else {
-                System.out.println("La Bruja ha matado al lobo. ¡El lobo está muerto!");
-                if (!jugadores.contains("Lobo")) {
-                    System.out.println("El lobo ha sido eliminado, pero el juego continuará hasta que el cazador sea eliminado.");
+            } else if (roles.get(i).equals("Lobo")) {
+                if (jugadores.get(i).equals(accionLobo)) {
+                    System.out.println("El Lobo no puede matarse a sí mismo.");
+                } else {
+                    System.out.println("El Lobo ha matado a " + accionLobo);
+                    roles.set(i, "Muerto");
                 }
             }
         }
     }
 
-    private void realizarAccionLobo(String jugador, Scanner scanner) {
-        System.out.println(jugador + " (Lobo) está decidiendo a quién atacar...");
-        System.out.println("Los jugadores disponibles para atacar son:");
-        for (String j : jugadores) {
-            if (!j.equals(jugador)) {
-                System.out.println("- " + j);
-            }
+    /**
+     * Realiza las acciones de la ronda diurna.
+     *
+     * @param jugadores ArrayList de nombres de jugadores.
+     * @param roles     ArrayList de roles asignados.
+     */
+    private static void dia(ArrayList<String> jugadores, ArrayList<String> roles) {
+        // Mostrar estado de los jugadores
+        System.out.println("Estado de los jugadores:");
+        for (int i = 0; i < NUMERO_JUGADORES; i++) {
+            System.out.println(jugadores.get(i) + " - " + roles.get(i));
         }
-        System.out.print("Ingrese el nombre del jugador a atacar: ");
-        String objetivo = scanner.next();
-        while (!jugadores.contains(objetivo) || objetivo.equals(jugador)) {
-            System.out.print("Nombre inválido. Ingrese nuevamente el nombre del jugador a atacar: ");
-            objetivo = scanner.next();
-        }
-        System.out.println(jugador + " (Lobo) ha atacado a " + objetivo);
-    }
 
+        // Todos votan
+        System.out.println("Todos votan:");
+        String victimaVotacion = elegirVictima(jugadores, roles, "a quien votar");
+        System.out.println(victimaVotacion + " ha sido eliminado por votación.");
 
-    public void iniciarDia(Scanner scanner) {
-        System.out.println("¡Comienza el día!");
-
-        System.out.println("Hablen los jugadores. Debatan y voten para eliminar a un jugador sospechoso.");
-
-        // Aquí podría implementarse la lógica para la discusión y votación entre los jugadores
-        // Por ejemplo, cada jugador podría expresar su opinión sobre quién podría ser un lobo, y luego se realiza una votación para eliminar a un jugador.
-
-        // Acción del cazador
-        if (jugadores.contains("Cazador")) {
-            System.out.print("Cazador, decide a quién quieres matar: ");
-            String objetivo = scanner.next();
-            while (!jugadores.contains(objetivo)) {
-                System.out.print("Nombre inválido. Ingresa nuevamente el nombre del jugador a matar: ");
-                objetivo = scanner.next();
-            }
-            if (objetivo.equals("Lobo")) {
-                System.out.println("El cazador ha matado al lobo. ¡Los aldeanos ganan!");
-                return;
-            } else if (objetivo.equals("Bruja") || objetivo.equals("Aldeano")) {
-                System.out.println("El cazador ha matado a un " + objetivo + ". Se pasará a la segunda ronda.");
-                iniciarRonda(scanner);
+        // Actualizar estado del jugador eliminado
+        for (int i = 0; i < NUMERO_JUGADORES; i++) {
+            if (jugadores.get(i).equals(victimaVotacion)) {
+                roles.set(i, "Muerto");
             }
         }
     }
 
-    public boolean hayGanador() {
-        int cantidadLobos = 0;
-        int cantidadAldeanos = 0;
+    /**
+     * Verifica si hay un ganador.
+     *
+     * @param roles     ArrayList de roles asignados.
+     * @param jugadores ArrayList de nombres de jugadores.
+     * @return true si hay un ganador, false de lo contrario.
+     */
+    private static boolean verificarFinJuego(ArrayList<String> roles, ArrayList<String> jugadores) {
+        int malosVivos = 0;
+        int buenosVivos = 0;
 
-        for (String jugador : jugadores) {
-            String rol = rolesJugadores.get(jugador);
-            if (rol.equals("Lobo")) {
-                cantidadLobos++;
-            } else if (rol.equals("Aldeano")) {
-                cantidadAldeanos++;
+        for (int i = 0; i < NUMERO_JUGADORES; i++) {
+            if (!roles.get(i).equals("Muerto")) {
+                if (roles.get(i).equals("Bruja") || roles.get(i).equals("Lobo")) {
+                    malosVivos++;
+                } else {
+                    buenosVivos++;
+                }
             }
         }
 
-        return cantidadLobos == 0 || cantidadAldeanos == 0;
+        return malosVivos == 0 || malosVivos == 2 || buenosVivos == 0;
     }
 
-    public boolean preguntarRepetirPartida(Scanner scanner) {
-        System.out.print("¿Deseas jugar otra partida? (S/N): ");
-        String respuesta = scanner.next();
-        return respuesta.equalsIgnoreCase("S");
-    }
-
-    public String obtenerRolJugador(String jugador) {
-        return rolesJugadores.get(jugador);
-    }
-
-    public boolean esNumero(String str) {
-        for (char c : str.toCharArray()) {
-            if (Character.isDigit(c)) {
-                return true;
+    /**
+     * Pide al usuario que elija una víctima.
+     *
+     * @param jugadores ArrayList de nombres de jugadores.
+     * @param roles     ArrayList de roles asignados.
+     * @param accion    La acción que se está realizando (curar, matar, votar, etc.).
+     * @return El nombre de la víctima elegida.
+     */
+    private static String elegirVictima(ArrayList<String> jugadores, ArrayList<String> roles, String accion) {
+        ArrayList<String> vivos = new ArrayList<>();
+        for (int i = 0; i < NUMERO_JUGADORES; i++) {
+            if (!roles.get(i).equals("Muerto")) {
+                vivos.add(jugadores.get(i));
             }
         }
-        return false;
+
+        System.out.println("Seleccione " + accion + ":");
+        for (int i = 0; i < vivos.size(); i++) {
+            System.out.println((i + 1) + ". " + vivos.get(i));
+        }
+
+        int seleccion = pedirEntero(1, vivos.size()) - 1;
+        return vivos.get(seleccion);
+    }
+
+    /**
+     * Pide al usuario que ingrese una cadena.
+     *
+     * @param mensaje El mensaje que se mostrará al usuario.
+     * @return La cadena ingresada por el usuario.
+     */
+    private static String pedirString(String mensaje) {
+        System.out.print(mensaje);
+        return SCANNER.nextLine();
+    }
+
+    /**
+     * Pide al usuario que ingrese un número entero dentro de un rango especificado.
+     *
+     * @param min El valor mínimo del rango.
+     * @param max El valor máximo del rango.
+     * @return El número entero ingresado por el usuario.
+     */
+    private static int pedirEntero(int min, int max) {
+        int input;
+        while (true) {
+            try {
+                input = Integer.parseInt(SCANNER.nextLine());
+                if (input < min || input > max) {
+                    System.out.println("Por favor, ingrese un número entre " + min + " y " + max + ".");
+                } else {
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor, ingrese un número válido.");
+            }
+        }
+        return input;
     }
 }
